@@ -11,20 +11,18 @@ export default function About({ navigation }) {
             style={styles.container}
             level='1'
         >
-
-            <View style={styles.container}>
-                <Text>About Page</Text>
-                <StatusBar style="auto" />
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
+            <View style={styles.calendar}>
+                <Text style={styles.calendarText} category='h6'>
+                    {`Selected date: ${date.toLocaleDateString()}`}
+                </Text>
+                <Datepicker
+                    date={date}
+                    onSelect={nextDate => setDate(nextDate)}
+                />
             </View>
-            <Text category='h6'>
-                {`Selected date: ${date.toLocaleDateString()}`}
-            </Text>
 
-            <Datepicker
-                date={date}
-                onSelect={nextDate => setDate(nextDate)}
-            />
+                <Button style={styles.backButton} title="Go Back" onPress={() => navigation.goBack()} />
+  
 
         </Layout>
 
@@ -38,7 +36,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    container: {
+    calendar: {
         minHeight: 376,
-      }
+        marginTop: -100,
+        marginBottom: 50
+    },
+    calendarText: {
+        color:'#132939',
+        marginBottom: 10
+    },
+    backButton: {
+        backgroundColor: '#4893cb',
+        borderColor: '#3d6786',
+        width: 200
+    }
 });
